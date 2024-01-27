@@ -191,7 +191,8 @@ and marks."
      function-symbol)
     (with-current-buffer display-buffer
       (erase-buffer)
-      (pp-display-expression advice-list "*advice display*"))))
+      (pp-display-expression advice-list "*advice display*"))
+    advice-list))
 
 (defun czm-misc-show-overlays-at-pt ()
   "Display all overlays at point in *ovs* buffer."
