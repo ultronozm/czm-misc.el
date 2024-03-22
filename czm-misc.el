@@ -111,21 +111,18 @@
 
 (require 'avy)
 
-(defun czm-misc-avy-copy-sexp (arg)
-  "Goto or copy sexp selected with avy.
-The prefix ARG specifies whether to copy instead of goto."
-  (interactive "P")
-  (if arg
-      (let ((avy-action #'avy-action-copy))
-        (when (avy-jump "(")
-          (yank)))
-    (let ((avy-action #'avy-action-goto))
-      (avy-jump "("))))
+(defun czm-misc-avy-copy ()
+  "Copy and yank sexp selected with avy."
+  (interactive)
+  (let ((avy-action #'avy-action-copy))
+    (when (avy-jump "(")
+      (yank))))
 
-(defun czm-misc-avy-copy-sexp-t ()
+(defun czm-misc-avy-jump ()
   "Goto or copy sexp selected with avy."
   (interactive)
-  (czm-misc-avy-copy-sexp t))
+  (let ((avy-action #'avy-action-goto))
+    (avy-jump "(")))
 
 (defun czm-misc-delete-horizontal-space-in-region (start end)
   "Delete repeated whitespace between START and END."
