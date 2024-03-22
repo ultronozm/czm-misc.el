@@ -124,6 +124,12 @@
   (let ((avy-action #'avy-action-goto))
     (avy-jump "(")))
 
+(defun czm-misc-avy-goto-or-copy-line (&optional arg)
+  (interactive "P")
+  (if arg
+      (avy-copy-line 1)
+    (avy-goto-line)))
+
 (defun czm-misc-delete-horizontal-space-in-region (start end)
   "Delete repeated whitespace between START and END."
   (interactive "r")
