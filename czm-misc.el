@@ -222,7 +222,8 @@ and marks."
   (other-window 1))
 
 (defun czm-misc-split-window-right-variant ()
-  "Split frame with current buffer at left and next buffer at right." (delete-other-windows)
+  "Split frame with current buffer at left and next buffer at right."
+  (interactive)
   (delete-other-windows)
   (split-window-right)
   (other-window 1)
