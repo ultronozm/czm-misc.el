@@ -197,6 +197,7 @@ and marks."
       (pp-display-expression advice-list "*advice display*"))
     advice-list))
 
+;;;###autoload
 (defun czm-misc-show-overlays-at-pt ()
   "Display all overlays at point in *ovs* buffer."
   (interactive)
@@ -230,6 +231,7 @@ and marks."
   (next-buffer)
   (other-window 1))
 
+;;;###autoload
 (defun czm-misc-clone-indirect-buffer-same-window ()
   "Clone the current buffer in-place."
   (interactive)
@@ -269,11 +271,20 @@ copying."
       (delete-region start end)
     (kill-region start end)))
 
+;;;###autoload
 (defmacro czm-misc-computation-time (&rest body)
   "Compute the time it takes to evaluate BODY."
   `(let ((start-time (current-time)))
      ,@body
      (float-time (time-subtract (current-time) start-time))))
+
+;;;###autoload
+(defun czm-misc-dired-git-files ()
+  "Open dired buffer with files in current git repo."
+  (interactive)
+  (let ((git-files (shell-command-to-string "git ls-files")))
+    (setq git-files (split-string git-files "\n" t))
+    (dired (cons "." git-files))))
 
 (provide 'czm-misc)
 ;;; czm-misc.el ends here
